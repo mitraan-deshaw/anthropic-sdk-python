@@ -117,7 +117,7 @@ class AnthropicVertex(BaseVertexClient[httpx.Client, Stream[Any]], SyncAPIClient
         if base_url is None:
             base_url = os.environ.get("ANTHROPIC_VERTEX_BASE_URL")
             if base_url is None:
-                base_url = f"https://{region}-aiplatform.googleapis.com/v1"
+                base_url = f"https://{'' if region == 'global' else region + '-'}aiplatform.googleapis.com/v1"
 
         super().__init__(
             version=__version__,
@@ -259,7 +259,7 @@ class AsyncAnthropicVertex(BaseVertexClient[httpx.AsyncClient, AsyncStream[Any]]
         if base_url is None:
             base_url = os.environ.get("ANTHROPIC_VERTEX_BASE_URL")
             if base_url is None:
-                base_url = f"https://{region}-aiplatform.googleapis.com/v1"
+                base_url = f"https://{'' if region == 'global' else region + '-'}aiplatform.googleapis.com/v1"
 
         super().__init__(
             version=__version__,
